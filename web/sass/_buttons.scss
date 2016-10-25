@@ -1,18 +1,186 @@
 /**** Extra buttons ****/
+.btn{
+	font-size: $btn-text-size-1;
+}
 
-.btn-home-box-1{
-    color: black;
-    background-color: white !important;
-	display: inline-block;
-	margin-top: 20px;
-	margin-bottom: 10px;
-    border: 1px solid #cccccc;
+.btn-home-box-1 {
+    color: $btn-text-color-1;
+    background-color: $btn-bg-color-1 !important;
+    border: 0;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
 
     &:hover, &:focus, &:active{
-    	background-color: #efefef !important;
+        color: $btn-text-color-1;
+        //margin-top:21px;
     }
 }
 
 .btn.btn-sm{
     font-size: 15px;
+}
+
+.btn-kpi{
+    color: white;
+    background-color: $btn-bg-color-8 !important;
+    margin-bottom: 15px;
+
+    &:hover{
+        color: white !important;
+        background-color: $btn-bg-color-9 !important;
+    }
+
+    &.active, &:focus, &:active{
+        background-color: $btn-bg-color-9 !important;
+        font-weight:bold;
+    }
+}
+
+.pull-center {
+    display:block;
+    margin: 0 auto;
+}
+
+.btn-home-box-2 {
+    color: $btn-text-color-2;
+    background-color: $btn-bg-color-1 !important;
+    border: 0;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+    	color: $btn-text-color-2;
+    	margin-top:21px;
+    }
+}
+
+.btn-home-box-3 {
+    color: $btn-text-color-3;
+    background-color: $btn-bg-color-1 !important;
+    border: 0;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-3;
+        margin-top:21px;
+    }
+}
+
+.btn-action {
+    color: $btn-text-color-4;
+    background-color: $btn-bg-color-2 !important;
+    border: 0;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-3 !important;
+    }
+}
+
+.btn-action-orange {
+    color: $btn-text-color-4;
+    background-color: $btn-bg-color-4 !important;
+    border: 0;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-5 !important;
+    }
+
+    &.margin{
+        margin-top:20px;
+    }
+}
+
+.btn-action-gris {
+    color: $btn-text-color-4;
+    background-color: $btn-bg-color-6 !important;
+    border: 0;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-7 !important;
+    }
+
+    &.margin{
+        margin-top:20px;
+    }
+}
+
+.big-action-btn{
+    background-color: $btn-bg-color-2 !important;
+    color: $btn-text-color-4;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    line-height:40px;
+    margin-bottom:15px;
+    padding:0;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-3 !important;
+    }
+}
+
+.big-action-orange-btn{
+    background-color: $btn-bg-color-4 !important;
+    color: $btn-text-color-4;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    line-height:40px;
+    margin-bottom:15px;
+    padding:0;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-5 !important;
+    }
+}
+
+.big-gray-btn{
+    @extend .big-action-btn;
+
+    background-color: $btn-bg-color-6 !important;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-7 !important;
+    }
+}
+
+.big-orange-btn{
+    @extend .big-action-btn;
+
+    background-color: $btn-bg-color-4 !important;
+    width:170px;
+    margin-top:30px;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-5 !important;
+    }
+}
+
+
+.big-green-btn{
+    @extend .big-orange-btn;
+
+    background-color: $btn-bg-color-2 !important;
+
+    &:hover, &:focus, &:active{
+        color: $btn-text-color-4;
+        background-color: $btn-bg-color-3 !important;
+    }
 }

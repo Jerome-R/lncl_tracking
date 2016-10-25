@@ -1,19 +1,13 @@
 # src/OC/PlatformBundle/Resources/config/routing.yml
 
-app_home:
-    path:      /q/{hash}
-    defaults:  { _controller: AppBundle:Home:index}
-
-app_merci:
-    path:      /merci
-    defaults:  { _controller: AppBundle:Home:merci}
-
-
+app_desabo:
+    path:      /desabo/{hash}
+    defaults:  { _controller: AppBundle:Home:desabo}
 
 # redirecting the root
 root:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /merci
+        path: /not_fount
         permanent: true

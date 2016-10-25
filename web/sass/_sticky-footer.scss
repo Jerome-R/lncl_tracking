@@ -16,8 +16,8 @@ html, body {
 }
 
 .site-footer {
-  background: #313233;
-  color: #6c6c6c;
+  background: $footer-bg-color;
+  color: $text-color-footer;
 
   .inner-footer{
     height:100%;

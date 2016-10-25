@@ -10,13 +10,13 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Client
+ * Tracking
  *
- * @ORM\Table(name="app_client")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\ClientRepository")
+ * @ORM\Table(name="app_tracking")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TrackingRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Client
+class Tracking
 {
     /**
      * @var integer
@@ -30,79 +30,51 @@ class Client
     /**
      * @var string
      *
-     * @ORM\Column(name="hash", type="string", length=255, unique=true)
+     * @ORM\Column(name="campagne", type="string", length=255)
      */
-    private $hash;
+    private $campagne;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="question1", type="integer")
+     * @ORM\Column(name="hard_bounce", type="integer")
      */
-    private $question1;
+    private $hardBounce;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="question2", type="integer")
+     * @ORM\Column(name="soft_bounce", type="integer")
      */
-    private $question2;
+    private $softBounce;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="ouvreur_unique", type="boolean")
+     */
+    private $ouvreurUnique;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="question3", type="integer")
+     * @ORM\Column(name="ouvertures", type="integer")
      */
-    private $question3;
+    private $ouvertures;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="cliqueur_unique", type="boolean")
+     */
+    private $cliqueurUnique;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="question4", type="integer")
+     * @ORM\Column(name="clics", type="integer")
      */
-    private $question4;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="question5", type="integer")
-     */
-    private $question5;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire1", type="text", nullable=true)
-     */
-    private $commentaire1;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire2", type="text", nullable=true)
-     */
-    private $commentaire2;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire3", type="text", nullable=true)
-     */
-    private $commentaire3;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire4", type="text", nullable=true)
-     */
-    private $commentaire4;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="commentaire5", type="text", nullable=true)
-     */
-    private $commentaire5;
+    private $clics;
 
 
     /**
@@ -121,22 +93,10 @@ class Client
      */
     private $modifiedAt;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_visit_at", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $lastVisitAt;
 
     public function __construct()
     {
         $this->createdAt    = new \DateTime();
-        $this->question1    = 0;
-        $this->question2    = 0;
-        $this->question3    = 0;
-        $this->question4    = 0;
-        $this->question5    = 0;
     }
 
     /**
@@ -146,7 +106,7 @@ class Client
      */
     public function getFullName()
     {
-        return $this->hash;
+        return $this->campagne;
     }
 
     // Function for sonata to render text-link relative to the entity
@@ -157,7 +117,7 @@ class Client
      * @return string
      */
     public function __toString() {
-        return $this->hash();
+        return $this->campagne();
     }
 
     /**
@@ -168,28 +128,6 @@ class Client
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get hash
-     *
-     * @return string
-     */
-    public function getHash()
-    {
-        return $this->hash;
-    }
-
-    /**
-     * Set hash
-     *
-     * @return Client
-     */
-    public function setHash($hash)
-    {
-        $this->hash = $hash;
-
-        return $this;
     }
 
     /**
@@ -205,7 +143,7 @@ class Client
     /**
      * Set question1
      *
-     * @return Client
+     * @return Tracking
      */
     public function setQuestion1($question1)
     {
@@ -227,7 +165,7 @@ class Client
     /**
      * Set question2
      *
-     * @return Client
+     * @return Tracking
      */
     public function setQuestion2($question2)
     {
@@ -249,7 +187,7 @@ class Client
     /**
      * Set question3
      *
-     * @return Client
+     * @return Tracking
      */
     public function setQuestion3($question3)
     {
@@ -271,7 +209,7 @@ class Client
     /**
      * Set question4
      *
-     * @return Client
+     * @return Tracking
      */
     public function setQuestion4($question4)
     {
@@ -293,7 +231,7 @@ class Client
     /**
      * Set question5
      *
-     * @return Client
+     * @return Tracking
      */
     public function setQuestion5($question5)
     {
@@ -315,7 +253,7 @@ class Client
     /**
      * Set commentaire1
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCommentaire1($commentaire1)
     {
@@ -337,7 +275,7 @@ class Client
     /**
      * Set commentaire2
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCommentaire2($commentaire2)
     {
@@ -359,7 +297,7 @@ class Client
     /**
      * Set commentaire3
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCommentaire3($commentaire3)
     {
@@ -381,7 +319,7 @@ class Client
     /**
      * Set commentaire4
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCommentaire4($commentaire4)
     {
@@ -403,7 +341,7 @@ class Client
     /**
      * Set commentaire5
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCommentaire5($commentaire5)
     {
@@ -417,7 +355,7 @@ class Client
      *
      * @param \DateTime $createdAt
      *
-     * @return Client
+     * @return Tracking
      */
     public function setCreatedAt($createdAt)
     {
@@ -442,7 +380,7 @@ class Client
      *
      * @param \DateTime $modifiedAt
      *
-     * @return Client
+     * @return Tracking
      */
     public function setModifiedAt($modifiedAt)
     {
@@ -460,31 +398,6 @@ class Client
     public function getModifiedAt()
     {
         return $this->modifiedAt;
-    }
-
-    /**
-     * Set lastVisitAt
-     *
-     * @param \DateTime $lastVisitAt
-     *
-     * @return Client
-     */
-    public function setLastVisitAt($lastVisitAt)
-    {
-        if( !($lastVisitAt instanceof \DateTime) ) $lastVisitAt = new \DateTime($lastVisitAt);
-        $this->lastVisitAt = $lastVisitAt;
-
-        return $this;
-    }
-
-    /**
-     * Get lastVisitAt
-     *
-     * @return \DateTime
-     */
-    public function getLastVisitAt()
-    {
-        return $this->lastVisitAt;
     }
 
     /**

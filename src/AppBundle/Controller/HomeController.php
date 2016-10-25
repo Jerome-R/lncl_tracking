@@ -79,12 +79,4 @@ class HomeController extends Controller
             )
         );        
     }
-
-    public function merciAction(Request $request)
-    {
-
-        return $this->render('AppBundle:Home:merci.html.twig', array(
-            )
-        );
-    }
 }

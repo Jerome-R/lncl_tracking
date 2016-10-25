@@ -7,11 +7,11 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-    admin.client:
-        class: AppBundle\Admin\ClientAdmin
-        arguments: [~, AppBundle\Entity\Client, ~]
+    admin.tracking:
+        class: AppBundle\Admin\TrackingAdmin
+        arguments: [~, AppBundle\Entity\Tracking, ~]
         tags:
-            - { name: sonata.admin, group: "Clients", manager_type: orm, label: Client }
+            - { name: sonata.admin, group: "Tracking", manager_type: orm, label: Tracking }
 
     cron.export:
         class: AppBundle\Service\ExportCronService

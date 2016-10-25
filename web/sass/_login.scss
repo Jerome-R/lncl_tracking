@@ -1,20 +1,26 @@
+body{
+	&.green{
+		background: $login-body-bg-color;
+	}
+}
+
 div.login-block{
 
 	h2{
 		margin-top:30px;
 	}
 
-	label{
-		font-weight: normal !important;
-	}
-
 	margin: 20px auto 40px;
-	//color: $text-color-box;
+	color: $text-color-box;
 	height: 300px;
 	position: relative;
 	z-index:99;
 
 	.block{
+		background-color: $login-box-bg;
+		.image-block{
+			background-color: $login-box-bg;
+		}
 		input{
 			border-radius: 0;
 			-o-border-radius: 0;

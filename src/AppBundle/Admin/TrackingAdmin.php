@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ClientAdmin extends Admin
+class TrackingAdmin extends Admin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -58,7 +58,7 @@ class ClientAdmin extends Admin
 
     public function toString($object)
     {
-        return "Client : " . $object->getFullName();
+        return "Tracking : " . $object->getFullName();
             //: 'Client boubou'; // shown in the breadcrumb on the create view*/        
     }
 }

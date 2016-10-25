@@ -36,7 +36,8 @@
 
         "ijanki/ftp-bundle": "*",
         "mopa/bootstrap-bundle": "^3.0",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "knplabs/knp-paginator-bundle": "^2.5"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "~2.7"
