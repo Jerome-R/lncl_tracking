@@ -9,5 +9,5 @@ root:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
-        path: /not_fount
+        path: /not_found
         permanent: true

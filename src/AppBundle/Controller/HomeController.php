@@ -9,8 +9,8 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use AppBundle\Entity\Client;
-use AppBundle\Form\ClientType;
+use AppBundle\Entity\Tracking;
+use AppBundle\Entity\Unsuscribe;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class HomeController extends Controller
 {
-    public function indexAction($hash, Request $request)
+    public function redirectAction($idClientInterne, $, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
