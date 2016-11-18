@@ -62,6 +62,13 @@ class Link
     private $url;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="lang", type="string", nullable=true)
+     */
+    private $lang;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="modified_at", type="datetime", nullable=true)
@@ -69,8 +76,14 @@ class Link
      */
     private $modifiedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\LinkClic", mappedBy="link", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $linkClics;
+
     public function __construct()
     {
+        $this->linkClics    = new ArrayCollection();
     }
 
 
@@ -174,6 +187,55 @@ class Link
         return $this;
     }
 
+    /**
+     * Get lang
+     *
+     * @return integer
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
+     * Set lang
+     *
+     * @param integer $template
+     *
+     * @return Link
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    /**
+     * Set modifiedAt
+     *
+     * @param \DateTime $modifiedAt
+     *
+     * @return Campaign
+     */
+    public function setModifiedAt($modifiedAt)
+    {
+        if( !($modifiedAt instanceof \DateTime) ) $modifiedAt = new \DateTime($modifiedAt);
+        $this->modifiedAt = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get modifiedAt
+     *
+     * @return \DateTime
+     */
+    public function getModifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
 
     // Function for sonata to render text-link relative to the entity
 
@@ -185,6 +247,22 @@ class Link
     public function __toString() {
         return $this->getId().' - '.$this->getName(). ' - '.$this->getUrl();
     }
+    
 
+    public function addLinkClic(LinkClic $linkClic)
+    {
+        $this->linkClics[] = $linkClic;
+        return $this;
+    }
+
+    public function removeLinkClic(LinkClic $linkClic)
+    {
+        $this->linkClics->removeElement($recipient);
+    }
+
+    public function getLinkClics()
+    {
+        return $this->linkClics;
+    }
 
 }

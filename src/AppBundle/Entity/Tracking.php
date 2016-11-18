@@ -108,9 +108,15 @@ class Tracking
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="contacted_at", type="date", nullable=true)
+     * @ORM\Column(name="contacted_at", type="datetime", nullable=true)
      */
     private $contactedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\LinkClic", mappedBy="tracking", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    protected $linkClics;
+
 
     public function __construct()
     {   
@@ -119,7 +125,9 @@ class Tracking
         $this->clics        = 0;
         $this->clicsOnce    = 0;
         $this->forwards     = 0;
+        $this->prints       = 0;
         $this->unsuscribe   = 0;
+        $this->linkClics    = new ArrayCollection();
     }
 
 
@@ -428,8 +436,24 @@ class Tracking
      *
      * @return \DateTime
      */
-    public function getSContactedAt()
+    public function getContactedAt()
     {
         return $this->contactedAt;
+    }
+
+    public function addLinkClic(LinkClic $linkClic)
+    {
+        $this->linkClics[] = $linkClic;
+        return $this;
+    }
+
+    public function removeLinkClic(LinkClic $linkClic)
+    {
+        $this->linkClics->removeElement($recipient);
+    }
+
+    public function getLinkClics()
+    {
+        return $this->linkClics;
     }
 }

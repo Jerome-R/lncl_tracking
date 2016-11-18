@@ -1,8 +1,20 @@
 # src/OC/PlatformBundle/Resources/config/routing.yml
 
+app_open:
+    path:      /o/{tracking_id}
+    defaults:  { _controller: AppBundle:Home:open}
+
+app_clic:
+    path:      /c/{tracking_id}/{linkPrivateId}
+    defaults:  { _controller: AppBundle:Home:clic}
+
 app_desabo:
-    path:      /desabo/{hash}
+    path:      /desabo/{tracking_id}
     defaults:  { _controller: AppBundle:Home:desabo}
+
+app_desabo_done:
+    path:      /desabo_done
+    defaults:  { _controller: AppBundle:Home:desaboDone}
 
 # redirecting the root
 root:
