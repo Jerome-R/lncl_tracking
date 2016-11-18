@@ -41,7 +41,7 @@ class LinkClic
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Link", inversedBy="linkClics")
-     * @ORM\JoinColumn(name="client_id", nullable=false)
+     * @ORM\JoinColumn(name="link_id", nullable=false)
      */
     private $link;
 

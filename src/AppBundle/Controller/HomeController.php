@@ -54,10 +54,16 @@ class HomeController extends Controller
      */
     public function clicAction(Tracking $tracking, $linkPrivateId, Request $request)
     {   
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();        
 
-        $link       = $em->getRepository('AppBundle:Link')->findOneBy(array('idCampaignName' => $tracking->getIdCampaignName(), 'privateId' => $linkPrivateId));
-        $linkClic   = $em->getRepository('AppBundle:LinkCLic')->findOneBy(array('tracking' => $tracking, 'link' => $link->getId()));
+        if($linkPrivateId == 100){
+            $link       = $em->getRepository('AppBundle:Link')->findOneBy(array('idCampaignName' => null, 'privateId' => $linkPrivateId));
+            $linkClic   = $em->getRepository('AppBundle:LinkCLic')->findOneBy(array('tracking' => $tracking, 'link' => $link->getId()));
+        }
+        else{
+            $link       = $em->getRepository('AppBundle:Link')->findOneBy(array('idCampaignName' => $tracking->getIdCampaignName(), 'privateId' => $linkPrivateId));
+            $linkClic   = $em->getRepository('AppBundle:LinkCLic')->findOneBy(array('tracking' => $tracking, 'link' => $link->getId()));
+        }
 
         if( $linkClic == null ) {
             $linkClic = new LinkCLic();
@@ -81,8 +87,8 @@ class HomeController extends Controller
 
         $url = $link->getUrl();
         
-        if($link->getId() == 100)
-            return new RedirectResponse( $this->generateUrl('app_desabo', array('tracking_id' => $tracking->getId())) );
+        if($linkPrivateId == 100)
+            return $this->redirect( $this->generateUrl('app_desabo', array('tracking_id' => $tracking->getId())) );
         else
             return $this->redirect($url);    
     }        
