@@ -15,8 +15,16 @@ class UnsuscribeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder        
-            ->add('raison', 'submit')
-            ->add('Envoyer', 'submit')
+            ->add('raison', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices'  => array(
+                    'Je ne souhaite plus recevoir de communication de la part de Lancel' => "r1",
+                    'Je ne suis plus intérréssé par les communication de Lancel'         => "r2",
+                    'Autres'    => "r3",
+                ),
+            // *this line is important*
+            'choices_as_values' => true,
+            ))
+            ->add('submit', 'submit')
         ;
     }
     

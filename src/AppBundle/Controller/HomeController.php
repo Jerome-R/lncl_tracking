@@ -102,8 +102,22 @@ class HomeController extends Controller
 
         $form  =  $this->createForm(new UnsuscribeType());
         $form->handleRequest($request);
+
+        $data = $form->getData();
+
+        if( $em->getRepository('AppBundle:Unsuscribe')->findOneBy( array('email' => $tracking->getEmail()) ) != null ){
+            return $this->redirect($this->generateUrl('app_desabo_done'));
+        }
        
         if ( $form->isSubmitted() && $form->isValid() ) {
+            $unsuscribe = new Unsuscribe();
+            $unsuscribe->setEmail($tracking->getEmail());
+            $unsuscribe->setRaison($data->getRaison());
+
+            $em->persist($unsuscribe);
+
+            //persist inutile, Doctrine connait l'entité
+            $em->flush();
 
             return $this->redirect($this->generateUrl('app_desabo_done'));
         }
@@ -115,9 +129,14 @@ class HomeController extends Controller
         );       
     }
 
-    public function desaboDoneAction(Request $request)
+
+    /**
+     * @ParamConverter("unsuscribe", options={"mapping": {"unsuscribe_id": "id"}})
+     */
+    public function desaboDoneAction(Unsuscribe $unsuscribe, Request $request)
     {   
         return $this->render('AppBundle:Home:desabo_done.html.twig', array(
+                'unsuscribe' => $unsuscribe
             )
         );       
     }
