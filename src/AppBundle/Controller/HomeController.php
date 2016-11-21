@@ -105,8 +105,10 @@ class HomeController extends Controller
 
         $data = $form->getData();
 
-        if( $em->getRepository('AppBundle:Unsuscribe')->findOneBy( array('email' => $tracking->getEmail()) ) != null ){
-            return $this->redirect($this->generateUrl('app_desabo_done'));
+        $unsuscribe =  $em->getRepository('AppBundle:Unsuscribe')->findOneBy( array('email' => $tracking->getEmail()) );
+
+        if( $unsuscribe != null ){
+            return $this->redirect($this->generateUrl( 'app_desabo_done', $unsuscribe->getId() ));
         }
        
         if ( $form->isSubmitted() && $form->isValid() ) {
@@ -119,7 +121,7 @@ class HomeController extends Controller
             //persist inutile, Doctrine connait l'entité
             $em->flush();
 
-            return $this->redirect($this->generateUrl('app_desabo_done'));
+            return $this->redirect($this->generateUrl( 'app_desabo_done', $unsuscribe->getId() ));
         }
         
         return $this->render('AppBundle:Home:desabo.html.twig', array(
