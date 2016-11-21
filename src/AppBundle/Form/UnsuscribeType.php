@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ClientType extends AbstractType
+class UnsuscribeType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,6 +15,7 @@ class ClientType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder        
+            ->add('raison', 'submit')
             ->add('Envoyer', 'submit')
         ;
     }
@@ -25,7 +26,7 @@ class ClientType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Tracking'
+            'data_class' => 'AppBundle\Entity\Unsuscribe'
         ));
     }
 
@@ -34,6 +35,6 @@ class ClientType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_Tracking';
+        return 'appbundle_unsuscribe';
     }
 }
