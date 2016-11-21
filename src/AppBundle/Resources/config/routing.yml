@@ -13,7 +13,7 @@ app_desabo:
     defaults:  { _controller: AppBundle:Home:desabo}
 
 app_desabo_done:
-    path:      /desabo_done
+    path:      /desabo_done/{unsuscribe_id}
     defaults:  { _controller: AppBundle:Home:desaboDone}
 
 # redirecting the root

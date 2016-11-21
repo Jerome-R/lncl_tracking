@@ -44,7 +44,7 @@ class Unsuscribe
    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="unsuscribe_date", type="date", nullable=true)
+     * @ORM\Column(name="unsuscribe_date", type="datetime", nullable=true)
      */
     private $unsuscribeDate;
 

@@ -35,7 +35,7 @@ class LinkClic
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tracking", inversedBy="linkClics")
-     * @ORM\JoinColumn(name="campaign_id", nullable=false)
+     * @ORM\JoinColumn(name="tracking_id", nullable=false)
      */
     private $tracking;
 
