@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Tracking
  *
  * @ORM\Table(name="app_tracking")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\TrackingRepository")
+ * @ORM\Entity(repositoryClass="AppTrackingBundle\Entity\TrackingRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Tracking
@@ -34,13 +34,12 @@ class Tracking
      */
     private $idClientInterne;
 
-
     /**
      * @var string
      *
      * @ORM\Column(name="id_campaign_name", type="string", length=255, nullable=true)
      */
-    private $idCampaignName;  
+    private $idCampaignName;
 
     /**
      * @var string
@@ -92,6 +91,20 @@ class Tracking
     private $forwards;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="hard_bounce", type="boolean")
+     */
+    private $hardBounce;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="soft_bounce", type="boolean")
+     */
+    private $softBounce;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="prints", type="integer", nullable=true)
@@ -113,7 +126,7 @@ class Tracking
     private $contactedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\LinkClic", mappedBy="tracking", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     * @ORM\OneToMany(targetEntity="AppTrackingBundle\Entity\LinkClic", mappedBy="tracking", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
     protected $linkClics;
 
@@ -124,6 +137,8 @@ class Tracking
         $this->opensOnce    = 0;
         $this->clics        = 0;
         $this->clicsOnce    = 0;
+        $this->hardBounce   = false;
+        $this->softBounce   = false;
         $this->forwards     = 0;
         $this->prints       = 0;
         $this->unsuscribe   = 0;
@@ -356,6 +371,52 @@ class Tracking
     public function setForwards($forwards)
     {
         $this->forwards = $forwards;
+
+        return $this;
+    }
+
+    /**
+     * Get hardBounce
+     *
+     * @return boolean 
+     */
+    public function getHardBounce()
+    {
+        return $this->hardBounce;
+    }
+
+    /**
+     * Set hardBounce
+     *
+     * @param boolean $hardBounce
+     * @return Tracking
+     */
+    public function setHardBounce($hardBounce)
+    {
+        $this->hardBounce = $hardBounce;
+
+        return $this;
+    }
+
+    /**
+     * Get softBounce
+     *
+     * @return boolean 
+     */
+    public function getSoftBounce()
+    {
+        return $this->softBounce;
+    }
+
+    /**
+     * Set softBounce
+     *
+     * @param boolean $softBounce
+     * @return Tracking
+     */
+    public function setSoftBounce($softBounce)
+    {
+        $this->softBounce = $softBounce;
 
         return $this;
     }

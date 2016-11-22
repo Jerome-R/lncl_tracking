@@ -13,5 +13,24 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class TrackingRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function getSumsPerCampaign()
+	{
+		$qb = $this->createQueryBuilder('t')
+			->select('t.idCampaignName')
+			->addSelect('SUM(t.opens) opens')
+			->addSelect('SUM(t.opensOnce) opensOnce')
+			->addSelect('SUM(t.clics) clics')
+			->addSelect('SUM(t.clicsOnce) clicsOnce')
+			->addSelect('SUM(t.hardBounce) hardBounce')
+			->addSelect('SUM(t.softBounce) softBounce')
+			->addSelect('SUM(t.unsuscribe) unsuscribes')
+			->groupBy('t.idCampaignName')
+		;
+
+		return $qb
+			->getQuery()
+			->getScalarResult();
+			//->getResult();
+	}
 	
 }
