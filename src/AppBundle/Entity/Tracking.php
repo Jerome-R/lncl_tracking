@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Tracking
  *
  * @ORM\Table(name="app_tracking")
- * @ORM\Entity(repositoryClass="AppTrackingBundle\Entity\TrackingRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\TrackingRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Tracking
@@ -126,7 +126,7 @@ class Tracking
     private $contactedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppTrackingBundle\Entity\LinkClic", mappedBy="tracking", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\LinkClic", mappedBy="tracking", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
     protected $linkClics;
 
