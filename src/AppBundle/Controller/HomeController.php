@@ -108,6 +108,9 @@ class HomeController extends Controller
         $unsuscribe =  $em->getRepository('AppBundle:Unsuscribe')->findOneBy( array('email' => $tracking->getEmail()) );
 
         if( $unsuscribe != null ){
+            $tracking->setUnsuscribe(1);
+            $em->flush();
+            
             return $this->redirect($this->generateUrl( 'app_desabo_done', array('unsuscribe_id' => $unsuscribe->getId()) ));
         }
        
@@ -115,6 +118,8 @@ class HomeController extends Controller
             $unsuscribe = new Unsuscribe();
             $unsuscribe->setEmail($tracking->getEmail());
             $unsuscribe->setRaison($data->getRaison());
+
+            $tracking->setUnsuscribe(1);
 
             $em->persist($unsuscribe);
 
