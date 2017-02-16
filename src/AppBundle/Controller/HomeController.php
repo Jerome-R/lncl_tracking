@@ -37,6 +37,12 @@ class HomeController extends Controller
      */
     public function openAction(Tracking $tracking, Request $request)
     {
+        if($tracking == null){
+            return $this->render('AppBundle:Home:not_found.html.twig', array(
+                )
+            );
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $opens = $tracking->getOpens();
@@ -54,6 +60,12 @@ class HomeController extends Controller
      */
     public function clicAction(Tracking $tracking, $linkPrivateId, Request $request)
     {   
+        if($tracking == null ){
+            return $this->render('AppBundle:Home:not_found.html.twig', array(
+                )
+            );
+        }
+
         $em = $this->getDoctrine()->getManager();        
 
         if($linkPrivateId == 100){
@@ -96,8 +108,14 @@ class HomeController extends Controller
     /**
      * @ParamConverter("tracking", options={"mapping": {"tracking_id": "id"}})
      */
-    public function desaboAction(Tracking $tracking, Request $request)
+    public function desaboAction(Tracking $tracking = null, Request $request)
     {   
+        if( !$tracking ){
+            return $this->render('AppBundle:Home:not_found.html.twig', array(
+                )
+            );
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $form  =  $this->createForm(new UnsuscribeType());
@@ -144,6 +162,14 @@ class HomeController extends Controller
     {   
         return $this->render('AppBundle:Home:desabo_done.html.twig', array(
                 'unsuscribe' => $unsuscribe
+            )
+        );       
+    }
+
+
+    public function notFoundAction(Request $request)
+    {   
+        return $this->render('AppBundle:Home:not_found.html.twig', array(
             )
         );       
     }
