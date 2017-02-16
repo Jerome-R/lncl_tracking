@@ -30,7 +30,7 @@ class Unsuscribe
     /**
      * @var string
      *
-     * @ORM\Column(name="id_campaign_name", type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=true)
      */
     private $email;
 
